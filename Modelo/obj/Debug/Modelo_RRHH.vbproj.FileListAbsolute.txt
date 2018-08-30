@@ -1,8 +1,0 @@
-C:\Users\franco.bonafina\Desktop\curso_vb_net-master\App_WinForms_RRHH\Modelo_RRHH\bin\Debug\Modelo_RRHH.dll
-C:\Users\franco.bonafina\Desktop\curso_vb_net-master\App_WinForms_RRHH\Modelo_RRHH\bin\Debug\Modelo_RRHH.pdb
-C:\Users\franco.bonafina\Desktop\curso_vb_net-master\App_WinForms_RRHH\Modelo_RRHH\bin\Debug\Modelo_RRHH.xml
-C:\Users\franco.bonafina\Desktop\curso_vb_net-master\App_WinForms_RRHH\Modelo_RRHH\obj\Debug\Modelo_RRHH.Resources.resources
-C:\Users\franco.bonafina\Desktop\curso_vb_net-master\App_WinForms_RRHH\Modelo_RRHH\obj\Debug\Modelo_RRHH.vbproj.GenerateResource.Cache
-C:\Users\franco.bonafina\Desktop\curso_vb_net-master\App_WinForms_RRHH\Modelo_RRHH\obj\Debug\Modelo_RRHH.dll
-C:\Users\franco.bonafina\Desktop\curso_vb_net-master\App_WinForms_RRHH\Modelo_RRHH\obj\Debug\Modelo_RRHH.xml
-C:\Users\franco.bonafina\Desktop\curso_vb_net-master\App_WinForms_RRHH\Modelo_RRHH\obj\Debug\Modelo_RRHH.pdb

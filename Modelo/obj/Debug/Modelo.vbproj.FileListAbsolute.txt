@@ -1,8 +1,0 @@
-C:\Users\franco.bonafina\Documents\MavhaVBtest\Modelo\obj\Debug\Modelo.Resources.resources
-C:\Users\franco.bonafina\Documents\MavhaVBtest\Modelo\obj\Debug\Modelo.vbproj.GenerateResource.Cache
-C:\Users\franco.bonafina\Documents\MavhaVBtest\Modelo\bin\Debug\Modelo.dll
-C:\Users\franco.bonafina\Documents\MavhaVBtest\Modelo\bin\Debug\Modelo.pdb
-C:\Users\franco.bonafina\Documents\MavhaVBtest\Modelo\bin\Debug\Modelo.xml
-C:\Users\franco.bonafina\Documents\MavhaVBtest\Modelo\obj\Debug\Modelo.dll
-C:\Users\franco.bonafina\Documents\MavhaVBtest\Modelo\obj\Debug\Modelo.xml
-C:\Users\franco.bonafina\Documents\MavhaVBtest\Modelo\obj\Debug\Modelo.pdb
