@@ -39,6 +39,14 @@ $ cd reactNativeExample
 
 Once this is done, there are some commands you can run in the project directory:
 
+
+- 1 Execute create table script (user.sql) using SSMS.
+	- Replace USE [YourDatabase] with a specific database.
+- 2 Update Web.Config appsetting with your SQL Server connection string.
+		<appSettings>
+	    	<add key="ConnectionString" value="Server=yourserver;Database=yourdatabase;User id = sa;Password=yourpassword"/>
+		</appSettings>
+
 #### `dotnet build`
 Install the dependencies . Target at framework 4.5 -
 
