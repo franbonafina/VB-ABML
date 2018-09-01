@@ -6,21 +6,21 @@ Mainly done with [VB]().and [ASP]()[.NET]()
 
 Test Técnico
 
-Problema
+#### Problema
 Implementar una solución visual (Web y Winform) con Alta-Listado  de una Entidad Persona con las siguientes características:
-PERSONA
-Nombre Completo
-Fecha de nacimiento
-Edad
-Sexo
+- PERSONA
+	- Nombre Completo
+	- Fecha de nacimiento
+	- Edad
+	- Sexo
 
-Implementar:
+##### Implementar:
 Listado de personas en una tabla con todos los campos de la entidad.
 Alta de persona con todos los campos de la entidad. 
 Edicion de persona con todos los campos de la entidad. 
 Baja lógica de persona.
 
-Consideraciones:
+##### Consideraciones:
 Construir una Solución .Net con los siguientes proyectos:
 Proyecto Web con ASPX en VB.Net para ABML de Personas.
 Proyecto VB.Net con la Lógica de negocio del ABML.
@@ -43,9 +43,11 @@ Once this is done, there are some commands you can run in the project directory:
 - 1 Execute create table script (user.sql) using SSMS.
 	- Replace USE [YourDatabase] with a specific database.
 - 2 Update Web.Config appsetting with your SQL Server connection string.
-		<appSettings>
-	    	<add key="ConnectionString" value="Server=yourserver;Database=yourdatabase;User id = sa;Password=yourpassword"/>
-		</appSettings>
+```
+	<appSettings>
+	    <add key="ConnectionString" value="Server=yourserver;Database=yourdatabase;User id = sa;Password=yourpassword"/>
+	</appSettings>
+```
 
 #### `dotnet build`
 Install the dependencies . Target at framework 4.5 -
