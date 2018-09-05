@@ -1,32 +1,31 @@
 ﻿Option Explicit On
 Option Strict On
 
-Imports System.Data.SqlClient
-Imports System.Data
 Imports System.Linq
 Imports System.Collections.Generic
+Imports Modelo.Modelo
 
 Partial Class _Default
     Inherits System.Web.UI.Page
-    Dim objCustomer As CustomerCls
+    Dim objUsuario As Modelo.Usuario
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If (Not Page.IsPostBack) Then
-            FillCustomerInGrid()
+            CompletarTabla()
         End If
     End Sub
 
-    Protected Sub FillCustomerInGrid()
+    Protected Sub CompletarTabla()
 
-        Dim dtCustomer As DataTable = New CustomerCls().Fetch()
+        Dim dtUsuario As New localhost.Fetch()
         Try
 
-            If dtCustomer.Rows.Count > 0 Then
-                GridView1.DataSource = dtCustomer
+            If dtUsuario.Rows.Count > 0 Then
+                GridView1.DataSource = dtUsuario
                 GridView1.DataBind()
             Else 'if no record, display no record found in a new gridview cell
-                dtCustomer.Rows.Add(dtCustomer.NewRow())
-                Me.GridView1.DataSource = dtCustomer
+                dtUsuario.Rows.Add(dtUsuario.NewRow())
+                Me.GridView1.DataSource = dtUsuario
                 GridView1.DataBind()
 
                 'create a new row/table and display a status message
@@ -37,7 +36,7 @@ Partial Class _Default
                 GridView1.Rows(0).Cells.Add(New TableCell())
                 GridView1.Rows(0).Cells(0).ColumnSpan = TotalColumns
                 GridView1.Rows(0).Cells(0).Style.Add("text-align", "center")
-                GridView1.Rows(0).Cells(0).Text = "No customer records in the database!"
+                GridView1.Rows(0).Cells(0).Text = "No hay usuarios guardados!"
 
             End If
 
@@ -50,31 +49,29 @@ Partial Class _Default
     Protected Sub GridView1_RowCancelingEdit(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCancelEditEventArgs) _
         Handles GridView1.RowCancelingEdit
         GridView1.EditIndex = -1
-        FillCustomerInGrid()
+        CompletarTabla()
     End Sub
 
     Protected Sub GridView1_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs)
         If e.CommandName.Equals("AddNew") Then
             Dim txtNewName As TextBox
             txtNewName = CType(GridView1.FooterRow.FindControl("txtNewName"), TextBox)
-            Dim cmbNewGender As DropDownList
-            cmbNewGender = CType(GridView1.FooterRow.FindControl("cmbNewGender"), DropDownList)
-            Dim txtNewCity As TextBox
-            txtNewCity = CType(GridView1.FooterRow.FindControl("txtNewCity"), TextBox)
-            Dim txtNewState As TextBox
-            txtNewState = CType(GridView1.FooterRow.FindControl("txtNewState"), TextBox)
-            Dim cmbNewType As DropDownList
-            cmbNewType = CType(GridView1.FooterRow.FindControl("cmbNewType"), DropDownList)
+            Dim cmbSexo As DropDownList
+            cmbSexo = CType(GridView1.FooterRow.FindControl("cmbSexo"), DropDownList)
+            Dim txtEdad As TextBox
+            txtEdad = CType(GridView1.FooterRow.FindControl("txtEdad"), TextBox)
+            Dim txtFechaDeNacimiento As TextBox
+            txtFechaDeNacimiento = CType(GridView1.FooterRow.FindControl("txtFechaDeNacimiento"), TextBox)
 
-            objCustomer = New CustomerCls
-            objCustomer.InsertCustomer(txtNewName.Text, cmbNewGender.SelectedValue, txtNewCity.Text, txtNewState.Text, cmbNewType.SelectedValue)
-            FillCustomerInGrid()
+            objUsuario = New Usuario
+            objUsuario.InsertCustomer(txtNewName.Text, cmbSexo.SelectedValue, txtEdad.Text, txtFechaDeNacimiento.Text)
+            CompletarTabla()
         ElseIf e.CommandName.Equals("Delete") Then
-            objCustomer = New CustomerCls
+            objUsuario = New Usuario
             Dim index As Integer
             index = Convert.ToInt32(e.CommandArgument)
-            objCustomer.DeleteCustomer(Convert.ToInt32(GridView1.DataKeys(index).Values(0).ToString()))
-            FillCustomerInGrid()
+            objUsuario.EliminarUsuario(Convert.ToInt32(GridView1.DataKeys(index).Values(0).ToString()))
+            CompletarTabla()
         End If
 
     End Sub
@@ -133,8 +130,7 @@ Partial Class _Default
             cmbType = CType(GridView1.Rows(e.RowIndex).FindControl("cmbType"), DropDownList)
 
             objCustomer = New CustomerCls
-            objCustomer.UpdateCustomer(txtName.Text, cmbGender.SelectedValue, txtCity.Text, txtState.Text,
-                                       cmbType.SelectedValue, Convert.ToInt32(GridView1.DataKeys(e.RowIndex).Values(0).ToString()))
+            objCustomer.UpdateCustomer(txtName.Text, cmbGender.SelectedValue, txtCity.Text, txtState.Text, cmbType.SelectedValue, Convert.ToInt32(GridView1.DataKeys(e.RowIndex).Values(0).ToString()))
             GridView1.EditIndex = -1
             FillCustomerInGrid()
         End If
