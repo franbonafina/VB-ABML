@@ -51,7 +51,7 @@
                                 <asp:TextBox id="txtName" runat="server" Text='<%# Eval("Name") %>'></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label id="Label1" runat="server" Text='<%# Eval("Name") %>'></asp:Label>
+                                <asp:Label id="Label1" runat="server" Text='<%# Eval("Nombre")%>'></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
                                 <asp:TextBox ID="txtNewName" runat="server" ></asp:TextBox>
@@ -59,34 +59,34 @@
                             <ItemStyle Wrap="True" />
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Gender">
+                        <asp:TemplateField HeaderText="Sexo">
                             <EditItemTemplate>
                                 &nbsp;           
-                                <asp:DropDownList ID="cmbGender" runat="server">
+                                <asp:DropDownList ID="cmbSexo" runat="server">
                                     <asp:ListItem>Male</asp:ListItem>
                                     <asp:ListItem>Female</asp:ListItem>
                                 </asp:DropDownList>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label runat="server" Text='<%# Eval("Gender")%>' id="Label2"></asp:Label>
+                                <asp:Label runat="server" Text='<%# Eval("Sexo")%>' id="Label2"></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <asp:DropDownList ID="cmbNewGender" runat="server" >
+                                <asp:DropDownList ID="cmbNuevoSexo" runat="server" >
                                     <asp:ListItem>Male</asp:ListItem>
                                     <asp:ListItem>Female</asp:ListItem>
                                 </asp:DropDownList>
                             </FooterTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="City">
+                        <asp:TemplateField HeaderText="Fecha de Nacimiento">
                             <EditItemTemplate>
-                                <asp:TextBox runat="server" Text='<%# Eval("City")%>' id="txtCity"></asp:TextBox>
+                                <asp:TextBox runat="server" Text='<%# Eval("fechaDeNacimiento")%>' id="txtFechaDeNacimiento"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label runat="server" Text='<%# Eval("City")%>' id="Label3"></asp:Label>
+                                <asp:Label runat="server" Text='<%# Eval("fechaDeNacimiento")%>' id="Label3"></asp:Label>
                             </ItemTemplate>
                             <FooterTemplate>
-                                <asp:TextBox ID="txtNewCity" runat="server" ></asp:TextBox>
+                                <asp:TextBox ID="txtNuevaFechaDeNacimiento runat="server" ></asp:TextBox>
                             </FooterTemplate>
                         </asp:TemplateField>
 

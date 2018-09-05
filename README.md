@@ -39,7 +39,7 @@ $ cd reactNativeExample
 
 Once this is done, there are some commands you can run in the project directory:
 
-
+### Set the App
 - 1 Execute create table script (user.sql) using SSMS.
 	- Replace USE [YourDatabase] with a specific database.
 - 2 Update Web.Config appsetting with your SQL Server connection string.
@@ -50,8 +50,11 @@ Once this is done, there are some commands you can run in the project directory:
 ```
 
 #### `dotnet build`
-Install the dependencies . Target at framework 4.5 -
+Install the dependencies . 
+
+### First Run WebService *UsuarioWebService*
+	`cd SOAP`
+ 	`dotnet run`
 
 #### `donet run`
-
 Runs the app in debug mode.

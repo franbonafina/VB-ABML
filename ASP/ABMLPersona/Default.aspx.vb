@@ -4,10 +4,13 @@ Option Strict On
 Imports System.Linq
 Imports System.Collections.Generic
 Imports Modelo.Modelo
+Imports WebServices
+
+
 
 Partial Class _Default
     Inherits System.Web.UI.Page
-    Dim objUsuario As Modelo.Usuario
+    Dim objUsuario As Usuario
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If (Not Page.IsPostBack) Then
@@ -17,7 +20,7 @@ Partial Class _Default
 
     Protected Sub CompletarTabla()
 
-        Dim dtUsuario As New localhost.Fetch()
+        Dim dtUsuario As clsws_UsuarioWebService.Fetch()
         Try
 
             If dtUsuario.Rows.Count > 0 Then
@@ -63,14 +66,14 @@ Partial Class _Default
             Dim txtFechaDeNacimiento As TextBox
             txtFechaDeNacimiento = CType(GridView1.FooterRow.FindControl("txtFechaDeNacimiento"), TextBox)
 
-            objUsuario = New Usuario
-            objUsuario.InsertCustomer(txtNewName.Text, cmbSexo.SelectedValue, txtEdad.Text, txtFechaDeNacimiento.Text)
+            objUsuario = New Usuario(txtNewName.Text, txtFechaDeNacimiento.Text, CType(cmbSexo.SelectedValue, TipoGenero), CSng(txtEdad.Text))
+            UsuarioWebService.Crear(objUsuario)
             CompletarTabla()
         ElseIf e.CommandName.Equals("Delete") Then
             objUsuario = New Usuario
             Dim index As Integer
             index = Convert.ToInt32(e.CommandArgument)
-            objUsuario.EliminarUsuario(Convert.ToInt32(GridView1.DataKeys(index).Values(0).ToString()))
+            UsuarioWebService.Eliminar(Convert.ToInt32(GridView1.DataKeys(index).Values(0).ToString()))
             CompletarTabla()
         End If
 
@@ -81,20 +84,12 @@ Partial Class _Default
 
         Try
             If e.Row.RowType = DataControlRowType.DataRow Then
-                'retain value of Type in the combobox
-                Dim cmbType As DropDownList
-                cmbType = CType(e.Row.FindControl("cmbType"), DropDownList)
-
-                If Not cmbType Is Nothing Then
-                    cmbType.SelectedValue = GridView1.DataKeys(e.Row.RowIndex).Values(1).ToString()
-                End If
-
                 'retain value of Gender in the combobox
-                Dim cmbGender As DropDownList
-                cmbGender = CType(e.Row.FindControl("cmbGender"), DropDownList)
+                Dim cmbSexo As DropDownList
+                cmbSexo = CType(e.Row.FindControl("cmbSexo"), DropDownList)
 
-                If Not cmbGender Is Nothing Then
-                    cmbGender.SelectedValue = GridView1.DataKeys(e.Row.RowIndex).Values(2).ToString()
+                If Not cmbSexo Is Nothing Then
+                    cmbSexo.SelectedValue = GridView1.DataKeys(e.Row.RowIndex).Values(2).ToString()
                 End If
             End If
 
@@ -110,7 +105,7 @@ Partial Class _Default
 
     Protected Sub GridView1_RowEditing(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewEditEventArgs)
         GridView1.EditIndex = e.NewEditIndex
-        FillCustomerInGrid()
+        CompletarTabla()
     End Sub
 
     'get values when row is updating
@@ -120,19 +115,18 @@ Partial Class _Default
 
             Dim txtName As TextBox
             txtName = CType(GridView1.Rows(e.RowIndex).FindControl("txtName"), TextBox)
-            Dim cmbGender As DropDownList
-            cmbGender = CType(GridView1.Rows(e.RowIndex).FindControl("cmbGender"), DropDownList)
-            Dim txtCity As TextBox
-            txtCity = CType(GridView1.Rows(e.RowIndex).FindControl("txtCity"), TextBox)
-            Dim txtState As TextBox
-            txtState = CType(GridView1.Rows(e.RowIndex).FindControl("txtState"), TextBox)
-            Dim cmbType As DropDownList
-            cmbType = CType(GridView1.Rows(e.RowIndex).FindControl("cmbType"), DropDownList)
+            Dim cmbSexo As DropDownList
+            cmbSexo = CType(GridView1.Rows(e.RowIndex).FindControl("cmbSexo"), DropDownList)
+            Dim txtFechaDeNacimiento As TextBox
+            txtFechaDeNacimiento = CType(GridView1.Rows(e.RowIndex).FindControl("txtFechaDeNacimiento"), TextBox)
+            Dim txtEdad As TextBox
+            txtEdad = CType(GridView1.Rows(e.RowIndex).FindControl("txtEdad"), TextBox)
+           
+            objUsuario = New Usuario(txtName.Text, txtFechaDeNacimiento.Text, CType(cmbSexo.SelectedValue, TipoGenero), CSng(txtEdad.Text))
 
-            objCustomer = New CustomerCls
-            objCustomer.UpdateCustomer(txtName.Text, cmbGender.SelectedValue, txtCity.Text, txtState.Text, cmbType.SelectedValue, Convert.ToInt32(GridView1.DataKeys(e.RowIndex).Values(0).ToString()))
+            UsuarioWebService.ActualizarUsuario(sender, objUsuario)
             GridView1.EditIndex = -1
-            FillCustomerInGrid()
+            CompletarTabla()
         End If
 
     End Sub
