@@ -1,3 +1,4 @@
+#Para simplificar, atento a modificaciones de tipo .
 USE [YourDatabase]
 GO
 
